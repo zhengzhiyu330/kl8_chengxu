@@ -47,16 +47,50 @@ else
 fi
 print_info "进程运行用户: ${RUN_USER}:${RUN_GROUP}"
 
-print_info "安装 Python 环境（若已安装会跳过）..."
+# Flask 3.x / gunicorn 21.x 需要 Python >= 3.8；阿里云 Alma/CentOS 默认 python3 常为 3.6，需单独装 3.9+
+PYTHON_BIN=""
+
+python_meets_min() {
+    local bin="$1"
+    command -v "$bin" &>/dev/null || return 1
+    "$bin" -c 'import sys; sys.exit(0 if sys.version_info >= (3, 8) else 1)' 2>/dev/null
+}
+
+pick_python() {
+    for c in python3.12 python3.11 python3.10 python3.9 python3; do
+        if python_meets_min "$c"; then
+            PYTHON_BIN="$c"
+            return 0
+        fi
+    done
+    return 1
+}
+
+print_info "安装/校验 Python（需 3.8+，Flask 3 不支持系统自带的 3.6）..."
 if command -v apt-get &>/dev/null; then
     apt-get update -y
     apt-get install -y python3 python3-pip python3-venv curl
+elif command -v dnf &>/dev/null; then
+    dnf install -y curl gcc python39 python39-devel || true
+    # 部分镜像 python39-pip 包名不同，保证 pip 可用
+    if python_meets_min python3.9; then
+        python3.9 -m ensurepip --upgrade 2>/dev/null || true
+    fi
 elif command -v yum &>/dev/null; then
-    yum install -y python3 python3-pip curl || true
+    yum install -y curl gcc python39 python39-devel || true
+    if python_meets_min python3.9; then
+        python3.9 -m ensurepip --upgrade 2>/dev/null || true
+    fi
 else
-    print_info "未检测到 apt/yum，请自行确保已安装 python3、pip、venv"
+    print_info "未检测到 apt/dnf/yum，请自行安装 Python 3.8+"
 fi
-print_step "系统依赖检查完成"
+
+if ! pick_python; then
+    print_error "未找到 Python 3.8+。请手动安装后重试，例如 AlmaLinux 8:"
+    print_error "  dnf install -y python39 python39-devel && python3.9 -m ensurepip --upgrade"
+    exit 1
+fi
+print_step "将使用: $(${PYTHON_BIN} -V) (${PYTHON_BIN})"
 
 if [ ! -d "${APP_DIR}" ]; then
     mkdir -p "${APP_DIR}"
@@ -81,8 +115,14 @@ chown -R "${RUN_USER}:${RUN_GROUP}" "${APP_DIR}"
 print_step "文件已同步"
 
 print_info "创建虚拟环境并安装依赖..."
+if [ -d "${VENV_DIR}" ]; then
+    if ! "${VENV_DIR}/bin/python" -c 'import sys; sys.exit(0 if sys.version_info >= (3, 8) else 1)' 2>/dev/null; then
+        print_info "删除旧的 Python 3.6 虚拟环境并重建..."
+        rm -rf "${VENV_DIR}"
+    fi
+fi
 if [ ! -d "${VENV_DIR}" ]; then
-    python3 -m venv "${VENV_DIR}"
+    "${PYTHON_BIN}" -m venv "${VENV_DIR}"
 fi
 "${VENV_DIR}/bin/pip" install --upgrade pip
 "${VENV_DIR}/bin/pip" install \
