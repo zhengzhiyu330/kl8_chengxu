@@ -57,6 +57,7 @@ python_meets_min() {
 }
 
 pick_python() {
+    local c
     for c in python3.12 python3.11 python3.10 python3.9 python3; do
         if python_meets_min "$c"; then
             PYTHON_BIN="$c"
@@ -66,18 +67,22 @@ pick_python() {
     return 1
 }
 
-print_info "安装/校验 Python（需 3.8+，Flask 3 不支持系统自带的 3.6）..."
+print_info "安装/校验 Python（需 3.8+，Flask 3 不支持 Alma/CentOS 默认的 3.6）..."
+RH_PKG=""
+if command -v dnf &>/dev/null; then
+    RH_PKG=dnf
+elif command -v yum &>/dev/null; then
+    RH_PKG=yum
+fi
+
 if command -v apt-get &>/dev/null; then
     apt-get update -y
     apt-get install -y python3 python3-pip python3-venv curl
-elif command -v dnf &>/dev/null; then
-    dnf install -y curl gcc python39 python39-devel || true
-    # 部分镜像 python39-pip 包名不同，保证 pip 可用
-    if python_meets_min python3.9; then
-        python3.9 -m ensurepip --upgrade 2>/dev/null || true
+elif [ -n "${RH_PKG}" ]; then
+    print_info "使用 ${RH_PKG} 安装 python39 ..."
+    if ! ${RH_PKG} install -y curl gcc python39 python39-devel python39-pip 2>/dev/null; then
+        ${RH_PKG} install -y curl gcc python39 python39-devel
     fi
-elif command -v yum &>/dev/null; then
-    yum install -y curl gcc python39 python39-devel || true
     if python_meets_min python3.9; then
         python3.9 -m ensurepip --upgrade 2>/dev/null || true
     fi
