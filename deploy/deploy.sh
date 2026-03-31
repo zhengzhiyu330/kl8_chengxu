@@ -7,7 +7,7 @@
 set -e
 
 # ==================== 配置区（按需修改）====================
-DOMAIN="api.yourdomain.com"       # 替换为你的域名
+DOMAIN="api.zhstpbf.cn"       # 替换为你的域名
 APP_DIR="/opt/kl8-api"            # 应用部署目录
 VENV_DIR="/opt/kl8-api/venv"      # Python虚拟环境目录
 LOG_DIR="/var/log/kl8-api"        # 日志目录
@@ -125,7 +125,7 @@ echo ""
 print_info "第9步：部署Nginx配置..."
 if [ -f "deploy/nginx.conf" ]; then
     # 替换域名
-    sed "s/api.yourdomain.com/${DOMAIN}/g" deploy/nginx.conf > /etc/nginx/sites-available/kl8-api
+    sed "s/api.zhstpbf.cn/${DOMAIN}/g" deploy/nginx.conf > /etc/nginx/sites-available/kl8-api
     ln -sf /etc/nginx/sites-available/kl8-api /etc/nginx/sites-enabled/
     # 删除默认配置
     rm -f /etc/nginx/sites-enabled/default

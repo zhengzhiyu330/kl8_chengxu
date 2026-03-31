@@ -57,7 +57,7 @@
 
 #### 1.2 购买域名
 - 在阿里云/腾讯云购买域名
-- 做A记录解析：`api.yourdomain.com` → `YOUR_SERVER_IP`
+- 做A记录解析：`api.zhstpbf.cn` → `YOUR_SERVER_IP`
 
 #### 1.3 ICP备案（国内服务器必须）
 - 通过服务器提供商进行ICP备案
@@ -109,12 +109,12 @@ curl http://YOUR_SERVER_IP:8000/api/health
 
 ```bash
 # 在服务器上执行
-certbot --nginx -d api.yourdomain.com
+certbot --nginx -d api.zhstpbf.cn
 ```
 
 验证HTTPS:
 ```bash
-curl https://api.yourdomain.com/api/health
+curl https://api.zhstpbf.cn/api/health
 ```
 
 ### 阶段4：微信小程序配置
@@ -125,7 +125,7 @@ curl https://api.yourdomain.com/api/health
 
 #### 4.2 配置服务器域名
 - 路径：开发 → 开发管理 → 开发设置 → 服务器域名
-- 在 `request合法域名` 中添加：`https://api.yourdomain.com`
+- 在 `request合法域名` 中添加：`https://api.zhstpbf.cn`
 - 注意：必须是 HTTPS，不能带端口号
 
 #### 4.3 配置小程序类目
@@ -143,7 +143,7 @@ const CONFIG = {
     timeout: 10000
   },
   production: {
-    baseURL: 'https://api.yourdomain.com',  // 改为你的域名
+    baseURL: 'https://api.zhstpbf.cn',  // 改为你的域名
     timeout: 10000
   }
 }
