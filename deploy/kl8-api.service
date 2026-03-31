@@ -1,0 +1,30 @@
+# ============================================
+# Systemd 服务配置
+# 文件路径: /etc/systemd/system/kl8-api.service
+# ============================================
+
+[Unit]
+Description=KL8 Data Analysis API Server
+After=network.target
+
+[Service]
+Type=simple
+User=www-data
+Group=www-data
+WorkingDirectory=/opt/kl8-api
+Environment="PATH=/opt/kl8-api/venv/bin"
+ExecStart=/opt/kl8-api/venv/bin/gunicorn -c gunicorn.conf.py kl8_api_server:app
+ExecReload=/bin/kill -s HUP $MAINPID
+ExecStop=/bin/kill -s TERM $MAINPID
+Restart=always
+RestartSec=5
+
+# 安全限制
+NoNewPrivileges=true
+PrivateTmp=true
+
+# 资源限制
+LimitNOFILE=65535
+
+[Install]
+WantedBy=multi-user.target

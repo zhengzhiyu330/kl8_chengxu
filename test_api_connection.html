@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>API 连接测试</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 800px;
+      margin: 50px auto;
+      padding: 20px;
+    }
+    .test-item {
+      margin-bottom: 20px;
+      padding: 15px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+    }
+    .success {
+      background-color: #d4edda;
+      border-color: #c3e6cb;
+    }
+    .error {
+      background-color: #f8d7da;
+      border-color: #f5c6cb;
+    }
+    .loading {
+      background-color: #fff3cd;
+      border-color: #ffeaa7;
+    }
+    button {
+      background-color: #007bff;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #0056b3;
+    }
+    pre {
+      background-color: #f5f5f5;
+      padding: 10px;
+      border-radius: 5px;
+      overflow-x: auto;
+    }
+  </style>
+</head>
+<body>
+  <h1>🧪 后端 API 连接测试</h1>
+
+  <div class="test-item" id="health-test">
+    <h2>1. 健康检查</h2>
+    <button onclick="testHealth()">测试</button>
+    <div id="health-result" class="loading">等待测试...</div>
+  </div>
+
+  <div class="test-item" id="periods-test">
+    <h2>2. 获取期数列表</h2>
+    <button onclick="testPeriods()">测试</button>
+    <div id="periods-result" class="loading">等待测试...</div>
+  </div>
+
+  <div class="test-item" id="detail-test">
+    <h2>3. 获取期数详情</h2>
+    <input type="text" id="issue-input" placeholder="输入期号（如：2026076）" value="2026076">
+    <button onclick="testDetail()">测试</button>
+    <div id="detail-result" class="loading">等待测试...</div>
+  </div>
+
+  <div class="test-item" id="all-data-test">
+    <h2>4. 获取所有数据</h2>
+    <button onclick="testAllData()">测试</button>
+    <div id="all-data-result" class="loading">等待测试...</div>
+  </div>
+
+  <script>
+    const API_BASE = 'http://localhost:8000';
+
+    async function testHealth() {
+      const resultDiv = document.getElementById('health-result');
+      resultDiv.className = 'loading';
+      resultDiv.innerHTML = '测试中...';
+
+      try {
+        const response = await fetch(`${API_BASE}/api/health`);
+        const data = await response.json();
+
+        if (data.status === 'ok') {
+          resultDiv.className = 'success';
+          resultDiv.innerHTML = `<h3>✅ 成功</h3><pre>${JSON.stringify(data, null, 2)}</pre>`;
+        } else {
+          resultDiv.className = 'error';
+          resultDiv.innerHTML = `<h3>❌ 失败</h3><pre>${JSON.stringify(data, null, 2)}</pre>`;
+        }
+      } catch (error) {
+        resultDiv.className = 'error';
+        resultDiv.innerHTML = `<h3>❌ 错误</h3><p>${error.message}</p>`;
+      }
+    }
+
+    async function testPeriods() {
+      const resultDiv = document.getElementById('periods-result');
+      resultDiv.className = 'loading';
+      resultDiv.innerHTML = '测试中...';
+
+      try {
+        const response = await fetch(`${API_BASE}/api/lottery/periods?limit=5`);
+        const data = await response.json();
+
+        if (data.success) {
+          resultDiv.className = 'success';
+          resultDiv.innerHTML = `<h3>✅ 成功</h3><p>获取到 ${data.data.total} 条数据</p><pre>${JSON.stringify(data, null, 2)}</pre>`;
+        } else {
+          resultDiv.className = 'error';
+          resultDiv.innerHTML = `<h3>❌ 失败</h3><p>${data.message}</p>`;
+        }
+      } catch (error) {
+        resultDiv.className = 'error';
+        resultDiv.innerHTML = `<h3>❌ 错误</h3><p>${error.message}</p>`;
+      }
+    }
+
+    async function testDetail() {
+      const resultDiv = document.getElementById('detail-result');
+      const issue = document.getElementById('issue-input').value;
+
+      if (!issue) {
+        resultDiv.className = 'error';
+        resultDiv.innerHTML = '<h3>❌ 错误</h3><p>请输入期号</p>';
+        return;
+      }
+
+      resultDiv.className = 'loading';
+      resultDiv.innerHTML = '测试中...';
+
+      try {
+        const response = await fetch(`${API_BASE}/api/periods/detail?issue=${issue}`);
+        const data = await response.json();
+
+        if (data.success) {
+          resultDiv.className = 'success';
+          resultDiv.innerHTML = `<h3>✅ 成功</h3><pre>${JSON.stringify(data, null, 2)}</pre>`;
+        } else {
+          resultDiv.className = 'error';
+          resultDiv.innerHTML = `<h3>❌ 失败</h3><p>${data.message}</p>`;
+        }
+      } catch (error) {
+        resultDiv.className = 'error';
+        resultDiv.innerHTML = `<h3>❌ 错误</h3><p>${error.message}</p>`;
+      }
+    }
+
+    async function testAllData() {
+      const resultDiv = document.getElementById('all-data-result');
+      resultDiv.className = 'loading';
+      resultDiv.innerHTML = '测试中...';
+
+      try {
+        const response = await fetch(`${API_BASE}/api/all-data`);
+        const data = await response.json();
+
+        if (data.success) {
+          resultDiv.className = 'success';
+          resultDiv.innerHTML = `<h3>✅ 成功</h3><pre>${JSON.stringify(data, null, 2).substring(0, 500)}...</pre>`;
+        } else {
+          resultDiv.className = 'error';
+          resultDiv.innerHTML = `<h3>❌ 失败</h3><p>${data.message}</p>`;
+        }
+      } catch (error) {
+        resultDiv.className = 'error';
+        resultDiv.innerHTML = `<h3>❌ 错误</h3><p>${error.message}</p>`;
+      }
+    }
+
+    // 自动测试健康检查
+    window.onload = () => {
+      testHealth();
+    };
+  </script>
+</body>
+</html>
