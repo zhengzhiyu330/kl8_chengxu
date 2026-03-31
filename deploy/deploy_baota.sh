@@ -47,13 +47,14 @@ else
 fi
 print_info "进程运行用户: ${RUN_USER}:${RUN_GROUP}"
 
-# Flask 3.x / gunicorn 21.x 需要 Python >= 3.8；阿里云 Alma/CentOS 默认 python3 常为 3.6，需单独装 3.9+
+# Flask 3.x：需 Python >= 3.8；本项目统一要求 >= 3.9。
+# Alibaba Cloud Linux 3 官方源不提供 python39 RPM，仅提供 python3.10/3.11/3.12（视镜像）与 python38，故在 alinux 上安装 python3.11 等。
 PYTHON_BIN=""
 
 python_meets_min() {
     local bin="$1"
     command -v "$bin" &>/dev/null || return 1
-    "$bin" -c 'import sys; sys.exit(0 if sys.version_info >= (3, 8) else 1)' 2>/dev/null
+    "$bin" -c 'import sys; sys.exit(0 if sys.version_info >= (3, 9) else 1)' 2>/dev/null
 }
 
 pick_python() {
@@ -67,7 +68,7 @@ pick_python() {
     return 1
 }
 
-print_info "安装/校验 Python（需 3.8+，Flask 3 不支持 Alma/CentOS 默认的 3.6）..."
+print_info "安装/校验 Python（需要 >= 3.9；系统自带 python3 多为 3.6，请勿直接升级）..."
 RH_PKG=""
 if command -v dnf &>/dev/null; then
     RH_PKG=dnf
@@ -75,24 +76,53 @@ elif command -v yum &>/dev/null; then
     RH_PKG=yum
 fi
 
+IS_ALINUX=0
+if [ -f /etc/os-release ]; then
+    # shellcheck source=/dev/null
+    . /etc/os-release
+    case "${ID:-}" in alinux|alios) IS_ALINUX=1 ;; esac
+fi
+
 if command -v apt-get &>/dev/null; then
     apt-get update -y
     apt-get install -y python3 python3-pip python3-venv curl
 elif [ -n "${RH_PKG}" ]; then
-    print_info "使用 ${RH_PKG} 安装 python39 ..."
-    if ! ${RH_PKG} install -y curl gcc python39 python39-devel python39-pip 2>/dev/null; then
-        ${RH_PKG} install -y curl gcc python39 python39-devel
-    fi
-    if python_meets_min python3.9; then
-        python3.9 -m ensurepip --upgrade 2>/dev/null || true
+    ${RH_PKG} install -y curl gcc make openssl-devel zlib-devel bzip2-devel libffi-devel xz-devel || true
+
+    if [ "${IS_ALINUX}" = "1" ]; then
+        print_info "Alibaba Cloud Linux：官方源无「python39」包，安装 python3.12 / 3.11 / 3.10（任选可用的一种，均 ≥3.9）..."
+        INSTALLED=0
+        for meta in "python3.12 python3.12-devel" "python3.11 python3.11-devel" "python3.10 python3.10-devel"; do
+            if ${RH_PKG} install -y ${meta}; then
+                INSTALLED=1
+                break
+            fi
+        done
+        if [ "${INSTALLED}" != "1" ]; then
+            print_error "未能通过 ${RH_PKG} 安装 python3.10+，请确认仓库正常或参考:"
+            print_error "  https://help.aliyun.com/zh/alinux/support/user-guide-install-a-newer-version-of-python-on-alibaba-cloud-linux-3"
+            exit 1
+        fi
+        for py in python3.12 python3.11 python3.10; do
+            command -v "${py}" &>/dev/null || continue
+            "${py}" -m ensurepip --upgrade 2>/dev/null || true
+        done
+    else
+        print_info "使用 ${RH_PKG} 安装 python39（RHEL / Alma 等）..."
+        if ! ${RH_PKG} install -y python39 python39-devel python39-pip 2>/dev/null; then
+            ${RH_PKG} install -y python39 python39-devel
+        fi
+        if command -v python3.9 &>/dev/null; then
+            python3.9 -m ensurepip --upgrade 2>/dev/null || true
+        fi
     fi
 else
-    print_info "未检测到 apt/dnf/yum，请自行安装 Python 3.8+"
+    print_info "未检测到 apt/dnf/yum，请自行安装 Python 3.9+"
 fi
 
 if ! pick_python; then
-    print_error "未找到 Python 3.8+。请手动安装后重试，例如 AlmaLinux 8:"
-    print_error "  dnf install -y python39 python39-devel && python3.9 -m ensurepip --upgrade"
+    print_error "未找到 Python 3.9+。Alibaba Cloud Linux 3 可执行: ${RH_PKG} install -y python3.11 python3.11-devel"
+    print_error "AlmaLinux 8 可执行: ${RH_PKG} install -y python39 python39-devel"
     exit 1
 fi
 print_step "将使用: $(${PYTHON_BIN} -V) (${PYTHON_BIN})"
@@ -121,8 +151,8 @@ print_step "文件已同步"
 
 print_info "创建虚拟环境并安装依赖..."
 if [ -d "${VENV_DIR}" ]; then
-    if ! "${VENV_DIR}/bin/python" -c 'import sys; sys.exit(0 if sys.version_info >= (3, 8) else 1)' 2>/dev/null; then
-        print_info "删除旧的 Python 3.6 虚拟环境并重建..."
+    if ! "${VENV_DIR}/bin/python" -c 'import sys; sys.exit(0 if sys.version_info >= (3, 9) else 1)' 2>/dev/null; then
+        print_info "删除旧的虚拟环境并重建（需 Python >= 3.9）..."
         rm -rf "${VENV_DIR}"
     fi
 fi
