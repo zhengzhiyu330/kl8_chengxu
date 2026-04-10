@@ -71,24 +71,32 @@
 ssh root@YOUR_SERVER_IP
 ```
 
-#### 2.2 上传代码
+#### 2.2 选择部署脚本（二选一）
+
+**A. 宝塔面板**（与 **`SERVER_ENV.md`** 一致时）：在**仓库根目录**执行  
+`sudo ./deploy/deploy_baota.sh` — 不要同时运行下面的裸机脚本。
+
+**B. 裸机 Ubuntu（无宝塔）**：在**仓库根目录**执行  
+`sudo ./deploy/deploy.ubuntu-standalone.sh` — **勿在已装宝塔的机器上使用**。
+
+对照表见 **`deploy/README.md`**。
+
+#### 2.3 上传代码（示例：裸机 `/opt/kl8-api`；宝塔可同步到 `/www/wwwroot/kl8-api`）
 ```bash
-# 在本地执行
-cd /Users/luluzhenlan/PycharmProjects/KL8/kl8_chengxu
+# 在本地执行（路径按实际修改）
 scp kl8_api_server.py root@YOUR_SERVER_IP:/opt/kl8-api/
 scp requirements_api.txt root@YOUR_SERVER_IP:/opt/kl8-api/
 scp -r deploy/ root@YOUR_SERVER_IP:/opt/kl8-api/
 ```
 
-#### 2.3 一键部署
+#### 2.4 一键部署（仅裸机方案；宝塔见 2.2-A）
 ```bash
-# 在服务器上执行
-cd /opt/kl8-api
-chmod +x deploy/deploy.sh
-sudo ./deploy/deploy.sh
+# 在服务器上、含 deploy 的目录中执行
+chmod +x deploy/deploy.ubuntu-standalone.sh
+sudo ./deploy/deploy.ubuntu-standalone.sh
 ```
 
-#### 2.4 手动部署（如果脚本失败）
+#### 2.5 手动部署（如果脚本失败）
 ```bash
 # 安装依赖
 apt update && apt install -y python3 python3-pip python3-venv nginx

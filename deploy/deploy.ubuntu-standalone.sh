@@ -1,7 +1,12 @@
 #!/bin/bash
 # ============================================
-# 服务器一键部署脚本（Ubuntu 22.04）
-# 使用方法: chmod +x deploy.sh && sudo ./deploy.sh
+# 裸机 Ubuntu：一键装系统 Nginx + Certbot + systemd（无宝塔面板）
+#
+# ⚠️  若服务器已安装「宝塔 / 已有面板管理 Nginx」：请勿运行本脚本。
+#     会与面板抢占 80/443、重复装 Nginx。请改用：deploy/deploy_baota.sh
+#
+# 用法（在仓库根目录）:
+#   chmod +x deploy/deploy.ubuntu-standalone.sh && sudo ./deploy/deploy.ubuntu-standalone.sh
 # ============================================
 
 set -e

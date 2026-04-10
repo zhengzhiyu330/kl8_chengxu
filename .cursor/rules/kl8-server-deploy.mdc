@@ -11,5 +11,6 @@ alwaysApply: true
    - 线上运行（venv、Gunicorn）多在 **`/www/wwwroot/kl8-api`**（通常 **无 .git**）
    - API 域名一般为 **`api.zhstpbf.cn`**
    - systemd 服务名一般为 **`kl8-api`**
-2. 用户补充或更正域名、路径、服务名时：**先改 `deploy/SERVER_ENV.md`**，再按需同步 **`deploy/SERVER_UPDATE_OPERATIONS.md`**、脚本注释等，避免文档仍写 `/opt/kl8-api` 等过时路径。
-3. 写发版步骤时须体现：**若源码与运行目录分离，需 `git pull` + 同步关键文件到 `kl8-api` + `systemctl reload kl8-api`**（依赖变更时强调 `restart` 与 venv 内 `pip`）。
+2. 用户补充或更正域名、路径、服务名时：**先改 `deploy/SERVER_ENV.md`**，再按需同步 **`deploy/SERVER_UPDATE_OPERATIONS.md`**、`deploy/README.md`、脚本注释等。
+3. **宝塔**只用 **`deploy/deploy_baota.sh`**；裸机 Ubuntu 用 **`deploy/deploy.ubuntu-standalone.sh`（原 deploy.sh）**。勿让宝塔用户跑裸机脚本。索引见 **`deploy/README.md`**。
+4. 写发版步骤时须体现：**若源码与运行目录分离，需 `git pull` + 同步关键文件到 `kl8-api` + `systemctl reload kl8-api`**（依赖变更时强调 `restart` 与 venv 内 `pip`）。

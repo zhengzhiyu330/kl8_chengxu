@@ -47,6 +47,8 @@ cp /www/wwwroot/kl8_chengxu/requirements_api.txt /www/wwwroot/kl8-api/requiremen
 
 若你改为 **直接在 `kl8-api` 里 `git clone` 单目录部署**，可删掉「两步目录」段落，仅保留一步 `git pull`——以你机器为准更新本文件。
 
+**初次装机用哪个脚本：** 宝塔见 **`deploy/README.md`** 中的 **`deploy_baota.sh`**；不要用 **`deploy.ubuntu-standalone.sh`**（会与面板 Nginx 冲突）。
+
 ## 用户常用身份
 
 - 维护时多为 **`root`** SSH（示例提示符：`[root@... kl8_chengxu]#`）
