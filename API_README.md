@@ -12,7 +12,7 @@ pip install -r requirements_api.txt
 python kl8_api_server.py
 ```
 
-服务器将在 `http://localhost:5000` 启动
+本地开发默认监听 **`http://localhost:8000`**（与 `kl8_api_server.py` 中 `app.run` 一致）。
 
 ## API 接口文档
 
@@ -241,9 +241,12 @@ python kl8_api_server.py
 ## 小程序调用示例
 
 ```javascript
+// 生产环境请使用合法请求域名（HTTPS），例如：
+const BASE = 'https://api.zhstpbf.cn';
+
 // 获取最新预测
 wx.request({
-  url: 'http://your-server-ip:5000/api/prediction/latest',
+  url: BASE + '/api/prediction/latest',
   success(res) {
     console.log('最新预测:', res.data.data);
   }
@@ -251,7 +254,7 @@ wx.request({
 
 // 生成新预测
 wx.request({
-  url: 'http://your-server-ip:5000/api/prediction/generate',
+  url: BASE + '/api/prediction/generate',
   method: 'POST',
   success(res) {
     console.log('开始生成预测:', res.data.message);
@@ -260,7 +263,7 @@ wx.request({
 
 // 获取单期详情（含 9 宫格）
 wx.request({
-  url: 'http://your-server-ip:5000/api/periods/detail',
+  url: BASE + '/api/periods/detail',
   data: { issue: '2026031' },
   success(res) {
     console.log('期数详情:', res.data.data);
@@ -274,4 +277,4 @@ wx.request({
 2. 数据每小时自动更新一次
 3. 所有数据都会缓存到 `cache/api_cache.json`
 4. 生成预测是异步操作，需要稍后查询结果
-5. 服务器监听 `0.0.0.0:5000`，可从外部访问
+5. 开发模式监听 `0.0.0.0:8000`；生产环境由 Nginx/宝塔反代到 HTTPS

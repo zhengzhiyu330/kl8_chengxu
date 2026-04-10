@@ -1,0 +1,15 @@
+---
+description: KL8 项目部署路径、宝塔目录与服务器操作须与 deploy/SERVER_ENV.md 一致
+globs: deploy/**,kl8_api_server.py
+alwaysApply: true
+---
+
+# KL8 服务器上下文（给 Agent）
+
+1. **先读** 仓库内 `deploy/SERVER_ENV.md`，其中约定：
+   - Git 源码多在 **`/www/wwwroot/kl8_chengxu`**
+   - 线上运行（venv、Gunicorn）多在 **`/www/wwwroot/kl8-api`**（通常 **无 .git**）
+   - API 域名一般为 **`api.zhstpbf.cn`**
+   - systemd 服务名一般为 **`kl8-api`**
+2. 用户补充或更正域名、路径、服务名时：**先改 `deploy/SERVER_ENV.md`**，再按需同步 **`deploy/SERVER_UPDATE_OPERATIONS.md`**、脚本注释等，避免文档仍写 `/opt/kl8-api` 等过时路径。
+3. 写发版步骤时须体现：**若源码与运行目录分离，需 `git pull` + 同步关键文件到 `kl8-api` + `systemctl reload kl8-api`**（依赖变更时强调 `restart` 与 venv 内 `pip`）。

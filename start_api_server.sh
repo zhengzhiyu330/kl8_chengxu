@@ -29,7 +29,7 @@ echo ""
 
 # 启动服务器
 echo "启动 API 服务器..."
-echo "访问地址: http://localhost:5000"
+echo "访问地址: http://localhost:8000"
 echo "按 Ctrl+C 停止服务器"
 echo ""
 python3 kl8_api_server.py
