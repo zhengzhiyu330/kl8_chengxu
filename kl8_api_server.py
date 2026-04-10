@@ -25,6 +25,7 @@ import re
 import json
 from collections import Counter, defaultdict
 from datetime import datetime
+from itertools import islice
 from typing import Dict, List, Set, Tuple
 import threading
 import time
@@ -1007,13 +1008,22 @@ def get_prediction_history():
         }), 404
     
     limit = request.args.get('limit', 15, type=int)
-    limit = min(limit, 15)
-    
+    limit = min(max(limit, 1), 15)
+
+    # all_predictions 在缓存里为 {期号: [预测号码...]}，不能对 dict 做 [:limit] 切片。
+    if isinstance(all_predictions, dict):
+        predictions_payload = dict(islice(all_predictions.items(), limit))
+        total = len(all_predictions)
+    else:
+        seq = list(all_predictions)
+        predictions_payload = seq[:limit]
+        total = len(seq)
+
     return jsonify({
         'success': True,
         'data': {
-            'predictions': all_predictions[:limit],
-            'total': len(all_predictions)
+            'predictions': predictions_payload,
+            'total': total
         }
     })
 
