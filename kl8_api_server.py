@@ -881,6 +881,9 @@ def update_data():
             cache_data['periodicity_result'] = periodicity_result
             cache_data['all_predictions'] = all_predictions
             cache_data['last_update'] = datetime.now().isoformat()
+            # 必须在写入缓存文件前清除，否则会长期把 is_updating=true 存进磁盘，
+            # 下次启动 load_cache 后 /api/prediction/generate 会一直 409。
+            cache_data['is_updating'] = False
         
         # 保存到文件
         cache_file = os.path.join(CACHE_DIR, 'api_cache.json')
@@ -908,6 +911,8 @@ def load_cache():
             with open(cache_file, 'r', encoding='utf-8') as f:
                 cached = json.load(f)
                 cache_data.update(cached)
+                # 持久化文件里可能带有上次更新中途写入的 is_updating；进程刚启动时没有后台任务在跑。
+                cache_data['is_updating'] = False
                 print(f"✓ 已加载缓存数据，上次更新：{cache_data['last_update']}")
         except Exception as e:
             print(f"⚠️ 加载缓存失败：{e}")

@@ -3,18 +3,63 @@ API 测试脚本
 用于测试快乐 8 智能预测 API 的各个接口
 """
 
-import requests
-import time
 import json
+import shutil
+import subprocess
+import time
 
-BASE_URL = 'http://localhost:5000'
+import requests
+
+BASE_URL = 'https://api.zhstpbf.cn'
+# BASE_URL = 'https://47.93.200.248'
+
+class _CurlResponse:
+    __slots__ = ('status_code', 'text')
+
+    def __init__(self, status_code, text):
+        self.status_code = status_code
+        self.text = text
+
+    def json(self):
+        return json.loads(self.text)
+
+
+def _curl_http(method, url, timeout):
+    cmd = ['curl', '-sS', '-L', '--max-time', str(int(timeout)), '-w', '\n%{http_code}']
+    if method == 'POST':
+        cmd.extend(['-X', 'POST'])
+    cmd.append(url)
+    p = subprocess.run(cmd, capture_output=True, text=True, timeout=timeout + 5)
+    if p.returncode != 0:
+        raise requests.exceptions.RequestException(p.stderr or p.stdout or 'curl failed')
+    raw = p.stdout
+    body, code_line = raw.rsplit('\n', 1)
+    return _CurlResponse(int(code_line.strip()), body)
+
+
+def http_get(url, timeout=30):
+    try:
+        return requests.get(url, timeout=timeout)
+    except (requests.exceptions.SSLError, requests.exceptions.ConnectionError):
+        if not shutil.which('curl'):
+            raise
+        return _curl_http('GET', url, timeout)
+
+
+def http_post(url, timeout=30):
+    try:
+        return requests.post(url, timeout=timeout)
+    except (requests.exceptions.SSLError, requests.exceptions.ConnectionError):
+        if not shutil.which('curl'):
+            raise
+        return _curl_http('POST', url, timeout)
 
 
 def test_health():
     """测试健康检查接口"""
     print("\n【测试健康检查】")
     try:
-        response = requests.get(f'{BASE_URL}/api/health')
+        response = http_get(f'{BASE_URL}/api/health')
         print(f"状态码: {response.status_code}")
         print(f"响应: {json.dumps(response.json(), ensure_ascii=False, indent=2)}")
         return response.status_code == 200
@@ -27,7 +72,7 @@ def test_latest_prediction():
     """测试获取最新预测接口"""
     print("\n【测试获取最新预测】")
     try:
-        response = requests.get(f'{BASE_URL}/api/prediction/latest')
+        response = http_get(f'{BASE_URL}/api/prediction/latest')
         print(f"状态码: {response.status_code}")
         if response.status_code == 200:
             data = response.json()
@@ -48,7 +93,7 @@ def test_prediction_history():
     """测试获取历史预测接口"""
     print("\n【测试获取历史预测】")
     try:
-        response = requests.get(f'{BASE_URL}/api/prediction/history?limit=5')
+        response = http_get(f'{BASE_URL}/api/prediction/history?limit=5')
         print(f"状态码: {response.status_code}")
         if response.status_code == 200:
             data = response.json()
@@ -67,7 +112,7 @@ def test_lottery_data():
     """测试获取开奖数据接口"""
     print("\n【测试获取开奖数据】")
     try:
-        response = requests.get(f'{BASE_URL}/api/lottery/data?limit=10')
+        response = http_get(f'{BASE_URL}/api/lottery/data?limit=10')
         print(f"状态码: {response.status_code}")
         if response.status_code == 200:
             data = response.json()
@@ -86,7 +131,7 @@ def test_periods_data():
     """测试获取推荐数据接口"""
     print("\n【测试获取推荐数据】")
     try:
-        response = requests.get(f'{BASE_URL}/api/lottery/periods?limit=5')
+        response = http_get(f'{BASE_URL}/api/lottery/periods?limit=5')
         print(f"状态码: {response.status_code}")
         if response.status_code == 200:
             data = response.json()
@@ -108,7 +153,7 @@ def test_backtest_stats():
     """测试获取回测统计接口"""
     print("\n【测试获取回测统计】")
     try:
-        response = requests.get(f'{BASE_URL}/api/analysis/backtest')
+        response = http_get(f'{BASE_URL}/api/analysis/backtest')
         print(f"状态码: {response.status_code}")
         if response.status_code == 200:
             data = response.json()
@@ -129,7 +174,7 @@ def test_periodicity_analysis():
     """测试获取周期性分析接口"""
     print("\n【测试获取周期性分析】")
     try:
-        response = requests.get(f'{BASE_URL}/api/analysis/periodicity')
+        response = http_get(f'{BASE_URL}/api/analysis/periodicity')
         print(f"状态码: {response.status_code}")
         if response.status_code == 200:
             data = response.json()
@@ -148,7 +193,7 @@ def test_generate_prediction():
     """测试生成预测接口"""
     print("\n【测试生成预测】")
     try:
-        response = requests.post(f'{BASE_URL}/api/prediction/generate')
+        response = http_post(f'{BASE_URL}/api/prediction/generate')
         print(f"状态码: {response.status_code}")
         print(f"响应: {response.json()}")
         return response.status_code == 200
@@ -164,7 +209,7 @@ def test_period_detail(issue=None):
     # 如果没有提供期号，先获取最新期号
     if not issue:
         try:
-            response = requests.get(f'{BASE_URL}/api/lottery/periods?limit=1')
+            response = http_get(f'{BASE_URL}/api/lottery/periods?limit=1')
             if response.status_code == 200:
                 periods = response.json()['data']['periods']
                 if periods:
@@ -178,7 +223,7 @@ def test_period_detail(issue=None):
         return False
     
     try:
-        response = requests.get(f'{BASE_URL}/api/periods/detail?issue={issue}')
+        response = http_get(f'{BASE_URL}/api/periods/detail?issue={issue}')
         print(f"状态码: {response.status_code}")
         if response.status_code == 200:
             data = response.json()
@@ -201,7 +246,7 @@ def test_all_data():
     """测试获取所有数据接口"""
     print("\n【测试获取所有数据】")
     try:
-        response = requests.get(f'{BASE_URL}/api/all-data')
+        response = http_get(f'{BASE_URL}/api/all-data')
         print(f"状态码: {response.status_code}")
         if response.status_code == 200:
             data = response.json()
