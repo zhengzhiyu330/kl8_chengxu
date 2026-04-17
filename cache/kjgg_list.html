@@ -1,0 +1,1650 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta content="yes" name="apple-mobile-web-app-capable">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+<meta http-equiv="X-UA-Compatible" content="IE=8, IE=9, IE=10, chrome=1" />
+<meta http-equiv='Content-Security-Policy' content='block-all-mixed-content'/>
+<script src="/js/isModel.js?20210916"></script>
+<link rel="icon" href="/images/n_logo.png">
+<link href="/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+<link href="/css/paging.css" rel="stylesheet" type="text/css">
+<link href="/css/home.css" rel="stylesheet" type="text/css">
+<link href="/css/common.css?20220607" rel="stylesheet" type="text/css">
+<script src="/js/jquery.min.js"></script>
+
+<script src="/js/WdatePicker/WdatePicker.js"></script>
+<script src="/js/common.js"></script>
+<link href="/css/idangerous.swiper2.7.6.css" rel="stylesheet" type="text/css">
+<script src="/js/idangerous.swiper2.7.6.min.js"></script>
+<!--[if lt IE 9]>
+<script src="https://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
+<script src="https://cdn.staticfile.org/respond.js/1.4.2/respond.min.js"></script>
+<![endif]-->
+<script>
+  var frontAppContext = 'https://www.cwl.gov.cn/cwl_admin/';
+  var siteID = "21";
+  var siteURL = "https://www.cwl.gov.cn/";
+  console.log("siteURL",siteURL)
+  var siteAlias = "";
+  var isPreview = false;
+  var url = window.location.href;
+  if (url.indexOf(frontAppContext) === 0) {
+    var path = url.substring(frontAppContext.length);
+    if (path.indexOf('/preview/') === 0 || path.indexOf('preview/') === 0) {
+      isPreview = true;
+      siteURL = "https://www.cwl.gov.cn/cwl_admin/preview/cwl/";
+    }
+  }
+  var log = {dir: function(msg) {
+      if (window.console && window.console.log) {
+        console.log(msg);
+      }
+    },err: function(msg) {
+      if (window.console && window.console.log) {
+        console.error(msg);
+      }
+    }};
+</script>
+<script src="/js/lottery.js"></script>
+  <title>é³åå¼å¥</title>
+  <meta name="keywords" content="ç¦å½©,å½©ç¥¨,ä¸­ç¦å½©,ä¸­å½ç¦å½©ç½,ç¦å©å½©ç¥¨,å¼å¥,å¬ç,ç¤¾ä¼è´£ä»»,åè²ç,3D,ä¸ä¹å½©,å®å®ä¹,è§é¢å½©ç¥¨,ä¿¡æ¯å¬å¼,æ¿ç­è§£è¯»,ç¦å½©å¯¹è¯,ç¦å½©æ¡£æ¡,ç¦å½©å¨èº«è¾¹,é³åå¼å¥" />
+  <meta name="description" content="ä¸­å½ç¦å½©ç½æ¯ç±ä¸­å½ç¦å©å½©ç¥¨åè¡ç®¡çä¸­å¿ä¸»åçå®æ¹ç½ç«,æå¡ç¤¾ä¼å¬ä¼,ä¼ æ­ç¦å½©å¬ç,ä¸ºå½©æ°æä¾åè²çãç¦å½©3Dãä¸ä¹å½©ãå®å®ä¹ç­ç¸å³åå®¹åå¶ä»ç¦å½©æ°æ®;æä¾å½©ç¥¨å¼å¥ç»æ,åè²çå¼å¥ç»æã3Då¼å¥ç»æãä¸ä¹å½©å¼å¥ç»æ,ä»¥åç¦å½©èµè®¯ãéç¥å¬åã" />
+  <link href="/css/detailBase.css?20220607" rel="stylesheet" type="text/css" />
+  <link href="/css/h5Base.css" rel="stylesheet" type="text/css" />
+  <script type="text/javascript" src="/js/jquery.min.js"></script>
+  <link href="/css/layui.css" rel="stylesheet" type="text/css" />
+  <script src="/js/layui.js"></script>
+  <style>
+    .ygkj-wjkjgg .table tbody td {
+      padding: 10px 0;
+    }
+
+    body {
+      font-size: 16px;
+    }
+
+    .main-container-header {
+      position: relative;
+      z-index: 98;
+    }
+
+    .header .header-nav {
+      z-index: 99;
+    }
+
+    .video-custom-loading {
+      box-sizing: border-box;
+      padding: 20px;
+      position: absolute;
+      z-index: 999;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 360px;
+      height: 100px;
+      background-color: #fff;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+      color: #101010;
+      border-radius: 12px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.6);
+      text-align: center;
+      line-height: 1.6;
+    }
+
+    .video-wrap {
+      position: relative;
+    }
+
+    .xgplayer-error {
+      display: none !important;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- å¤´é¨ -->
+  
+<style>
+    .nav-item-list-width {
+        width: 1200px;
+        text-align: left;
+        position: relative;
+    }
+
+    .nav-item-width {
+        width: 1200px;
+        margin: 0 auto;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        /* å¼å®¹safari */
+        -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+        -webkit-justify-content: space-between;
+    }
+
+    .kjzb-icon {
+        width: 40px;
+        vertical-align: sub;
+    }
+
+    .nav-item-list-width {
+        width: 1200px;
+        text-align: left;
+        position: relative;
+    }
+
+    .nav-item-width {
+        width: 1200px;
+        margin: 0 auto;
+    }
+
+    .kjzb-icon {
+        width: 40px;
+        vertical-align: sub;
+    }
+
+    /* cssæ ·å¼ä¿®æ¹ */
+    .header-top-change {
+        width: 1200px;
+        height: 103px;
+        margin: 10px auto;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+    }
+
+    .header-top-change>div {
+        flex: 1;
+    }
+
+    .zftc-text {
+        font-weight: bold;
+        letter-spacing: 10px;
+        margin-left: 12px;
+        font-size: 18px;
+        font-family: "æ¥·ä½", sans-serif;
+        color: #727272;
+        border-top: 1px solid #EBECEE;
+    }
+
+    .serch-text {
+        letter-spacing: 2px;
+        margin-right: 15px;
+    }
+
+    .header .header-nav .nav-item {
+        padding: 0 !important;
+        flex: 1;
+    }
+
+    .nav-item-wrap-home {
+        width: 80px;
+        flex: none !important;
+        text-align: center;
+    }
+
+    .header .header-nav .nav-item:hover .nav-item-zlk-wrap:before {
+        border-color: transparent transparent transparent transparent;
+
+    }
+</style>
+<div class="header">
+    <!-- å¯¼èªæ¡ä¹ä¸çåå®¹ -->
+    <div class="header-top-change">
+        <!-- å·¦ä¾§---å¾çlogo -->
+        <div style="padding: 10px 0;">
+            <a href="/" target="_blank">
+                <img style="height: 83px" src="/images/logo-top.png" alt="" />
+            </a>
+        </div>
+        <!-- ä¸­é´é¨å---å¬çè´£ä»»é³å -->
+        <div style="text-align: center;padding:0 90px;">
+            <img src="/images/logo-txt.png?20220328" style="margin-bottom: 10px;" />
+            <div class="zftc-text">ä¸ºç¤¾ä¼é ç¦ ä¸ºçæ´»æ·»å½©</div>
+        </div>
+        <!-- å³ä¾§---æç´¢æ¡ -->
+        <div style="text-align: right;">
+            <div class="serch-text">
+                <a href="/"> ä¸­å½ç¦å©å½©ç¥¨åè¡ç®¡çä¸­å¿å®æ¹ç½ç« </a>
+            </div>
+            <div class="right-bottom" style="margin-top: 13px;">
+                <div class="input-group" style="position:inherit;margin-left: auto;">
+                    <!-- 0ç¦æ­¢ 1åè®¸ -->
+                    
+                    
+                        <input type="text" id="searchInput" class="form-control" placeholder="è¯·è¾å¥æç´¢åå®¹" />
+                        <span class="input-group-btn" onclick="doSearch()">
+                            <button class="btn btn-default" type="button">
+                                æç´¢
+                            </button>
+                        </span>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- å¯¼èªæ¡ -->
+    <div class="header-nav">
+        <div class="nav-item-width">
+            <div class="nav-item nav-item-wrap-home">
+                <div class="nav-item-wrap ">
+                    <a href="/" target="_blank"> é¦é¡µ </a>
+                </div>
+            </div>
+            <!-- ç»ç»æ¶æ-->
+            <div class="nav-item" data-alias="zzjg">
+                <div class="nav-item-wrap">
+                    
+                        
+                            
+                            
+                                <a href="/zzjg/jgsz/" target="_blank">
+                                    ç»ç»æºæ
+                                </a>
+                            
+                    
+                </div>
+                <div class="nav-item-list">
+                    <div class="nav-item-list-width">
+                        <div class="nav-item-list-left">
+                            
+                                
+                                    
+                                    
+                                        <a href="/zzjg/jgsz/" target="_blank">
+                                            <div>æºæè®¾ç½®</div>
+                                        </a>
+                                    
+                                    
+                                    
+                                        <a href="/zzjg/jgzn/" target="_blank">
+                                            <div>æºæèè½</div>
+                                        </a>
+                                    
+                                    
+                                    
+                                        <a href="/zzjg/ldjs/" target="_blank">
+                                            <div>é¢å¯¼ä»ç»</div>
+                                        </a>
+                                    
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- æ°é»ä¸­å¿-->
+            <div class="nav-item" data-alias="gzdt">
+                <div class="nav-item-wrap">
+                    
+                        
+                            
+                            
+                                <a href="/gzdt/tt/" target="_blank">
+                                    æ°é»ä¸­å¿
+                                </a>
+                            
+                    
+                </div>
+                <div class="nav-item-list">
+                    <div class="nav-item-list-width">
+                        <div class="nav-item-list-left">
+                            
+                                
+                                    
+                                    
+                                        <a href="/gzdt/tt/" target="_blank">
+                                            <div>å¤´æ¡</div>
+                                        </a>
+                                    
+                                    
+                                    
+                                        <a href="/gzdt/mzyw/" target="_blank">
+                                            <div>æ°æ¿è¦é»</div>
+                                        </a>
+                                    
+                                    
+                                    
+                                        <a href="/gzdt/ywdt/" target="_blank">
+                                            <div>ä¸å¡å¨æ</div>
+                                        </a>
+                                    
+                                    
+                                    
+                                        <a href="/gzdt/gsld/" target="_blank">
+                                            <div>åçäº®ç¹</div>
+                                        </a>
+                                    
+                                    
+                                    
+                                        <a href="/gzdt/xyyj/" target="_blank">
+                                            <div>è¡ä¸ç ç©¶</div>
+                                        </a>
+                                    
+                                    
+                                    
+                                        <a href="/gzdt/mtsy/" target="_blank">
+                                            <div>åªä½å£°é³</div>
+                                        </a>
+                                    
+                                    
+                                    
+                                        <a href="/fcgs/" target="_blank">
+                                            <div>ä¸çº¿é£é</div>
+                                        </a>
+                                    
+                                    
+                                    
+                                        <a href="/gzdt/fcbk/" target="_blank">
+                                            <div>ç¦å½©ç¾ç§</div>
+                                        </a>
+                                    
+                                    
+                                    
+                                        <a href="/gzdt/whcf/" target="_blank">
+                                            <div>ç¦å½©æå</div>
+                                        </a>
+                                    
+                                    
+                                    
+                                        <a href="/gzdt/rdsp/" target="_blank">
+                                            <div>è§é¢</div>
+                                        </a>
+                                    
+                                    
+                                    
+                                        <a href="/gzdt/fczt/" target="_blank">
+                                            <div>ä¸é¢</div>
+                                        </a>
+                                    
+                                    
+                                    
+                                        <a href="/tp/" target="_blank">
+                                            <div>å¾ç</div>
+                                        </a>
+                                    
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- ä¿¡æ¯å¬å¼-->
+            <div class="nav-item" data-alias="xxgk">
+                <div class="nav-item-wrap">
+                    
+                        
+                            
+                            
+                                <a href="/xxgk/yxspjbg/" target="_blank">
+                                    ä¿¡æ¯å¬å¼
+                                </a>
+                            
+                    
+                </div>
+                <div class="nav-item-list">
+                    <div class="nav-item-list-width">
+                        <div class="nav-item-list-left">
+                            
+                                
+                                    
+                                    
+                                        <a href="/xxgk/yxspjbg/" target="_blank">
+                                            <div>æ¸¸æå®¡æ¹ååæ´</div>
+                                        </a>
+                                    
+                                    
+                                    
+                                        <a href="/xxgk/tsjxh/" target="_blank">
+                                            <div>åå®åéæ¯</div>
+                                        </a>
+                                    
+                                    
+                                    
+                                        <a href="/xxgk/ndfxxsqk/" target="_blank">
+                                            <div>å¹´åº¦åè¡éå®å¬å</div>
+                                        </a>
+                                    
+                                    
+                                    
+                                        <a href="/xxgk/cwyjs/" target="_blank">
+                                            <div>è´¢å¡é¢å³ç®</div>
+                                        </a>
+                                    
+                                    
+                                    
+                                        <a href="/xxgk/kjlc/" target="_blank">
+                                            <div>å¼å¥æµç¨</div>
+                                        </a>
+                                    
+                                    
+                                    
+                                        <a href="/xxgk/fcda/" target="_blank">
+                                            <div>ç¦å½©å¤§äºè®°</div>
+                                        </a>
+                                    
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- æ¿ç­æ³è§-->
+            <div class="nav-item" data-alias="zcfg">
+                <div class="nav-item-wrap">
+                    
+                        <a href="/zcfg/" target="_blank">
+                            æ¿ç­æ³è§
+                        </a>
+                    
+                </div>
+                <div class="nav-item-list">
+                    <div class="nav-item-list-width">
+                        <div class="nav-item-list-left">
+                            
+                                
+                                    
+                                    
+                                        <a href="/zcfg/zygwy/" target="_blank">
+                                            <div>æ³å¾æ³è§</div>
+                                        </a>
+                                    
+                                    
+                                    
+                                        <a href="/zcfg/czb/" target="_blank">
+                                            <div>è´¢æ¿é¨</div>
+                                        </a>
+                                    
+                                    
+                                    
+                                        <a href="/zcfg/mzb/" target="_blank">
+                                            <div>æ°æ¿é¨</div>
+                                        </a>
+                                    
+                                    
+                                    
+                                        <a href="/zcfg/zfczx/" target="_blank">
+                                            <div>ä¸­ç¦å½©ä¸­å¿</div>
+                                        </a>
+                                    
+                                    
+                                    
+                                        <a href="/zcfg/zcjd/" target="_blank">
+                                            <div>æ¿ç­è§£è¯»</div>
+                                        </a>
+                                    
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- ç¦å½©å¬ç-->
+            <div class="nav-item" data-alias="fcgy">
+                <div class="nav-item-wrap">
+                    
+                        <a>
+                            <div onclick="handleNav('fcgy_gyjxm','/fcgy/')">
+                                ç¦å½©å¬ç
+                            </div>
+                        </a>
+                    
+                </div>
+                <div class="nav-item-list">
+                    <div class="nav-item-list-width">
+                        <div class="nav-item-list-left">
+                            
+                                
+                                    <a href="/fcgy/gyjcj/" target="_blank">
+                                        <div>å¬çéç­¹éæåµ</div>
+                                    </a>
+                                    <a href="/fcgy/gyjsy/" target="_blank">
+                                        <div>å¬çéæ¥æºååé</div>
+                                    </a>
+                                    <a href="/fcgy/gyjxm/" target="_blank">
+                                        <div>å¬çéä½¿ç¨å¬å</div>
+                                    </a>
+                                    <a href="/fcgy/gyhdd/" target="_blank">
+                                        <div>å¬çæ´»å¨</div>
+                                    </a>
+                                    <a href="/fcgy/fcgygs/" target="_blank">
+                                        <div>ç¦å½©å¬çæäº</div>
+                                    </a>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- ç¤¾ä¼è´£ä»»-->
+            <div class="nav-item" data-alias="shzr">
+                <div class="nav-item-wrap">
+                    
+                        
+                            
+                            
+                                <a href="/shzr/wmdcn/" target="_blank">
+                                    è´£ä»»å½©ç¥¨
+                                </a>
+                            
+                    
+                </div>
+                <div class="nav-item-list">
+                    <div class="nav-item-list-width">
+                        <div class="nav-item-list-left">
+                            
+                                
+                                    
+                                    
+                                        <a href="/shzr/wmdcn/" target="_blank">
+                                            <div>æä»¬çæ¿è¯º</div>
+                                        </a>
+                                    
+                                    
+                                    
+                                        <a href="/shzr/wmdzr/" target="_blank">
+                                            <div>æä»¬çè´£ä»»</div>
+                                        </a>
+                                    
+                                    
+                                    
+                                        <a href="/shzr/zrcprz/" target="_blank">
+                                            <div>è´£ä»»å½©ç¥¨è®¤è¯</div>
+                                        </a>
+                                    
+                                    
+                                    
+                                        <a href="/shzr/zrjs/" target="_blank">
+                                            <div>è´£ä»»å½©ç¥¨åå</div>
+                                        </a>
+                                    
+                                    
+                                    
+                                        <a href="/shzr/shzrbg/" target="_blank">
+                                            <div>è´£ä»»å½©ç¥¨æ¥å</div>
+                                        </a>
+                                    
+                                    
+                                    
+                                        <a href="/shzr/zrcpsc/" target="_blank">
+                                            <div>è´£ä»»å½©ç¥¨æå</div>
+                                        </a>
+                                    
+                                    
+                                    
+                                        <a href="/shzr/lxgc/" target="_blank">
+                                            <div>çæ§è´­å½©æå</div>
+                                        </a>
+                                    
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- é³åå¼å¥-->
+            <div class="nav-item" data-alias="ygkj">
+                <div class="nav-item-wrap">
+                    
+                        
+                            
+                            
+                                <a href="/ygkj/kjgg/" target="_blank">
+                                    é³åå¼å¥
+                                </a>
+                            
+                    
+                </div>
+                <div class="nav-item-list">
+                    <div class="nav-item-list-width">
+                        <div class="nav-item-list-left">
+                            
+                                
+                                    
+                                    
+                                        <a href="/ygkj/kjgg/" target="_blank">
+
+                                            <div>
+                                                
+                                                å¼å¥å¬å
+                                            </div>
+                                        </a>
+                                    
+                                    
+                                    
+                                        <a href="/ygkj/kjzb/" target="_blank">
+
+                                            <div>
+                                                
+                                                    <img class="kjzb-icon" src="/images/live-icon.png"
+                                                        alt="">
+                                                
+                                                å¼å¥ç´æ­
+                                            </div>
+                                        </a>
+                                    
+                                    
+                                    
+                                        <a href="/ygkj/wqkjgg/" target="_blank">
+
+                                            <div>
+                                                
+                                                å¾æå¼å¥å¬å
+                                            </div>
+                                        </a>
+                                    
+                                    
+                                    
+                                        <a href="/ygkj/wqkjsp/" target="_blank">
+
+                                            <div>
+                                                
+                                                å¾æå¼å¥è§é¢
+                                            </div>
+                                        </a>
+                                    
+                                    
+                                    
+                                        <a href="/ygkj/kjlc/" target="_blank">
+
+                                            <div>
+                                                
+                                                å¼å¥æµç¨
+                                            </div>
+                                        </a>
+                                    
+                                    
+                                    
+                                        <a href="/ygkj/zjkjxc/" target="_blank">
+
+                                            <div>
+                                                
+                                                èµ°è¿å¼å¥ç°åº
+                                            </div>
+                                        </a>
+                                    
+                                    
+                                    
+                                        <a href="/ygkj/kjxxfbqd/" target="_blank">
+
+                                            <div>
+                                                
+                                                å¼å¥ä¿¡æ¯åå¸æ¸ é
+                                            </div>
+                                        </a>
+                                    
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- ç¦å½©æ¸¸æ-->
+            <div class="nav-item" data-alias="fcpz">
+                <div class="nav-item-wrap">
+                    
+                        
+                            <a href="/fcpz/yxjs/" target="_blank">
+                                <div>
+                                    ç¦å½©æ¸¸æ
+                                </div>
+                            </a>
+                    
+                </div>
+                <div class="nav-item-list">
+                    <div class="nav-item-list-width">
+                        <div class="nav-item-list-left">
+                            
+                                
+                                    
+                                    
+                                        <a href="/fcpz/fctp/" target="_blank">
+                                            <div>æ¸¸æåç±»</div>
+                                        </a>
+                                    
+                                    
+                                    
+                                        <a href="/fcpz/pzjs/" target="_blank">
+                                            <div>æ¸¸æç±»å</div>
+                                        </a>
+                                    
+                                    
+                                    
+                                        <a href="/fcpz/yxjs/" target="_blank">
+                                            <div>ç¦å½©æ¸¸æ</div>
+                                        </a>
+                                    
+                            
+                            
+                                <a href="/fcpz/yxjs/ssq/" target="_blank">
+                                    <div>åè²ç</div>
+                                </a>
+                            
+                            
+                                <a href="/fcpz/yxjs/kl8/" target="_blank">
+                                    <div>å¿«ä¹8</div>
+                                </a>
+                            
+                            
+                                <a href="/fcpz/yxjs/fc3d/" target="_blank">
+                                    <div>ç¦å½©3D</div>
+                                </a>
+                            
+                            
+                                <a href="/fcpz/yxjs/qlc/" target="_blank">
+                                    <div>ä¸ä¹å½©</div>
+                                </a>
+                            
+                            
+                                <a href="/fcpz/yxjs/ggl/" target="_blank">
+                                    <div>å®å®ä¹</div>
+                                </a>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- èµæåº-->
+            <div class="nav-item" data-alias="fcxczlk">
+                <div class="nav-item-wrap nav-item-zlk-wrap">
+                    
+                        <!-- ${catalog(Catalog.ID,'ID',1).name} -->
+                        
+                            
+                                <a style="cursor: pointer"
+                                    onclick="handleNav('fcxczlk_sp','/fcxczlk/')">èµæåº</a>
+                            
+                            
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="clearfix"></div>
+<script>
+    var oneLeft = $('.nav-item:first').position().left
+    $('.nav-item').each(function () {
+        var itemDom = $(this).find('.nav-item-list-left')
+        var left = $(this).position().left
+        var width = itemDom.width()
+        itemDom.css('margin-left', left - oneLeft - width / 2 + 79 + 'px')
+
+        if (itemDom.css('margin-left')) {
+            var sumWidth = Number(itemDom.css('margin-left').replace('px', ''))
+            if (sumWidth + width > 1200) {
+                itemDom.css('margin-left', 1200 - width - 20 + 'px')
+            }
+            if (sumWidth < 0) {
+                itemDom.css('margin-left', '0px')
+            }
+        }
+    })
+    $('#searchInput').bind('keyup', function (event) {
+        if (event.keyCode == '13') {
+            //åè½¦æ§è¡æ¥è¯¢
+            doSearch()
+        }
+    })
+
+    function doSearch() {
+        if (!$('#searchInput').val()) {
+            return
+        }
+        var url =
+            'https://www.cwl.gov.cn/search/result.shtml?siteID=21&query=' +
+            encodeURIComponent($('#searchInput').val())
+        $('#searchInput').val('')
+        window.open(url)
+    }
+</script>
+  
+    <div class="header">
+      <!-- å¤´é¨ -->
+      <div style="margin-top: 42px;" class="main-container-header" id="catalog-change">
+        <!-- å¾çèæ¯ -->
+        <!-- <img src="${SourceImage(catalog(catalog(Catalog.ID,'ID',1).alias,'Alias').logofile)}" /> -->
+        <!-- åå®¹å¤´é¨ -->
+        <div class="main-container-header-title">
+          <!-- é¢åå± -->
+          <div class="content-header-breadcrumb">
+            <span><a href="/">é¦é¡µ</a> > é³åå¼å¥</span>
+          </div>
+          <!-- åå®¹å¯¼èª -->
+          <div class="content-title-nav">
+            
+            
+            
+              
+                
+                
+                
+                  <a href="/ygkj/kjgg/" target="_self">
+                    <div class="
+                        content-title-nav-item
+                        active
+                        ygkj_kjgg_nav
+                      " id="000291000018" data-alias="ygkj_kjgg">
+                      å¼å¥å¬å
+                    </div>
+                  </a>
+                
+                
+                
+                  <a href="/ygkj/kjzb/" target="_self">
+                    <div class="
+                          content-title-nav-item
+                          
+                          ygkj_kjzb_nav
+                        " id="000291000019" data-alias="ygkj_kjzb">
+                      å¼å¥ç´æ­
+                    </div>
+                  </a>
+                
+                
+                
+                
+                
+                  <a href="/ygkj/wqkjgg/" target="_self">
+                    <div class="
+                        content-title-nav-item
+                        
+                        ygkj_wqkjgg_nav
+                      " id="000291000008" data-alias="ygkj_wqkjgg">
+                      å¾æå¼å¥å¬å
+                    </div>
+                  </a>
+                
+                
+                
+                
+                  <a href="/ygkj/wqkjsp/" target="_self">
+                    <div class="
+                        content-title-nav-item
+                        
+                        ygkj_wqkjsp_nav
+                      " id="000291000006" data-alias="ygkj_wqkjsp">
+                      å¾æå¼å¥è§é¢
+                    </div>
+                  </a>
+                
+                
+                
+                
+                  <a href="/ygkj/kjlc/" target="_self">
+                    <div class="
+                        content-title-nav-item
+                        
+                        ygkj_kjlc_nav
+                      " id="000291000016" data-alias="ygkj_kjlc">
+                      å¼å¥æµç¨
+                    </div>
+                  </a>
+                
+                
+                
+                
+                  <a href="/ygkj/zjkjxc/" target="_self">
+                    <div class="
+                        content-title-nav-item
+                        
+                        ygkj_zjkjxc_nav
+                      " id="000291000009" data-alias="ygkj_zjkjxc">
+                      èµ°è¿å¼å¥ç°åº
+                    </div>
+                  </a>
+                
+                
+                
+                
+                  <a href="/ygkj/kjxxfbqd/" target="_self">
+                    <div class="
+                        content-title-nav-item
+                        
+                        ygkj_kjxxfbqd_nav
+                      " id="000291000017" data-alias="ygkj_kjxxfbqd">
+                      å¼å¥ä¿¡æ¯åå¸æ¸ é
+                    </div>
+                  </a>
+                
+            
+          </div>
+        </div>
+      </div>
+    </div>
+  
+  
+  <div class="main">
+    <div class="main-container-content">
+      <!-- åå®¹ä¸»ä½ -->
+      <div class="main-container-content-body">
+        
+          <div class="ygkj_kjgg ">
+            
+
+<!-- åè²çæ°æ® -->
+
+  
+    
+    
+    
+    
+    
+    
+    <!-- ä¸æä¸ç­å¥ç¹å«å¥æ´¾å¥éé¢ -->
+    
+    <!-- ä¸æå­ç­å¥ç¿»çªå¥å¥éä½é¢ -->
+    
+    <!-- æ ¹æ®åè²çæ´¾å¥æ´»å¨çç¹å«è§å® -->
+    
+
+
+  
+
+<!-- å¿«ä¹8æ°æ® -->
+
+  
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+
+
+  
+
+<!-- ç¦å½©3dæ°æ® -->
+
+  
+    
+    
+    
+    
+    
+
+<!-- ä¸ä¹å½©æ°æ® -->
+
+  
+    
+    
+    
+    
+    
+    
+
+
+  
+
+<div style="display: none">
+  <div class="ssqRed-dom">[07,19,12,31,24,02]</div>
+  <div class="ssqBlue-dom">[10]</div>
+  <div class="ssqQh-dom">2026042</div>
+  <div class="ssqPool-dom">1,729,981,238</div>
+  <div class="ssqSales-dom">400,801,534</div>
+  <div class="ssqXqLink-dom">/c/2026/04/16/651255.shtml</div>
+  <div class="ssqSpLink-dom">/c/2026/04/16/651259.shtml</div>
+  <div class="tentenjj-dom"></div>
+  <div class="tentenzs-dom"></div>
+  <div class="metavalue_special_provisions-dom"></div>
+  <div class="klRed-dom">[01,04,08,09,10,13,15,17,20,24,26,33,34,35,36,41,44,51,53,60]</div>
+  <div class="kl8Qh-dom">2026096</div>
+  <div class="kl8gzq-dom">2025349</div>
+  <div class="kl8Jc-dom">24297575.72</div>
+  <div class="kl8GdJc-dom">106989372.74</div>
+  <div class="kl8Sales-dom">106,941,364</div>
+  <div class="kl8PjnAmount-dom"></div>
+  <div class="kl8PjnTen-dom"></div>
+  <div class="kl8PjnNine-dom"></div>
+  <div class="kl8XqLink-dom">/c/2026/04/16/651257.shtml</div>
+  <div class="kl8SpLink-dom">/c/2026/04/16/651258.shtml</div>
+  <div class="fcBlue-dom">[6,8,9]</div>
+  <div class="fcQh-dom">2026096</div>
+  <div class="fcPool-dom"></div>
+  <div class="fcSales-dom">115,008,828</div>
+  <div class="fcXqLink-dom">/c/2026/04/16/651256.shtml</div>
+  <div class="qclRed-dom">[16,06,29,02,17,11,30]</div>
+  <div class="qclBlue-dom">[12]</div>
+  <div class="qlcQh-dom">2026041</div>
+  <div class="qlcPool-dom">721,200</div>
+  <div class="qlcSales-dom">2,931,922</div>
+  <div class="qlcXqLink-dom">/c/2026/04/15/651148.shtml</div>
+  <div class="qlcSpLink-dom">/c/2026/04/15/651152.shtml</div>
+</div>
+<style>
+    .kl8PjContainer {
+        font-size: 16px;
+        color: #212121;
+        margin-bottom: 10px;
+    }
+
+    .kl8PjContainer .red {
+        font-size: 14px;
+        font-weight: bold;
+    }
+
+    .lotteryNum {
+        height: 48px;
+        font-size: 24px;
+        border-radius: 33px;
+        color: #ffffff;
+        text-align: center;
+        line-height: 48px;
+        z-index: 2;
+        position: relative;
+    }
+
+    .lotteryNumContainer {
+        position: relative;
+        width: 42px;
+        height: 48px;
+        display: inline-block;
+        vertical-align: middle;
+        margin: 5px;
+    }
+
+    .lotteryNumContainer img {
+        position: absolute;
+        z-index: 1;
+        left: 50%;
+        width: 42px;
+        top: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+
+    .notice-content {
+        width: 70%;
+        margin-left: 101px;
+    }
+
+    .logo_container {
+        position: absolute;
+        width: 65px;
+        top: 0;
+        left: 20px;
+        height: 100%;
+    }
+
+    .logo_container img {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+    .btn1-txt {
+        font-size: 12px;
+        margin-left: 30px;
+    }
+
+    .btn1-txt img {
+        width: 30px;
+        height: 30px;
+        margin-bottom: 7px;
+    }
+
+    .notice-content-title-one {
+        margin: 10px 0;
+        margin-left: 4px;
+    }
+
+    .notice-content-title-six {
+        margin-left: 4px;
+    }
+
+    .ygkj-kjgg .sec-main .content-change .notice-item .kjrqAndTb {
+        width: 100%;
+        height: 88px;
+    }
+
+    .kjrqAndTb-wrap {
+        display: flex;
+        width: 18%;
+        position: absolute;
+        right: 30px;
+        top: 0;
+        height: 100%;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .first-prize {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .body-content-title-box {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .body-content-title-box .content-fix-title {
+        font-size: 20px !important;
+        text-align: left;
+    }
+
+    .body-content-title-box .zjmx-box .ssq-ydj-zjmx {
+        display: inline-block;
+        color: #ffffff;
+        background: #c60101;
+        padding: 5px 10px;
+        font-size: 16px;
+        margin-left: 5px;
+        border-radius: 3px;
+    }
+</style>
+<div class="main-container-content-body">
+    <div class="body-content ygkj-kjgg">
+        <div class="body-content-item">
+            <div class="body-content-item-content content-fix body-content-title-box">
+                <div class="content-fix-title">ä¸­å½ç¦å©å½©ç¥¨å¼å¥å¬å</div>
+                <div class="zjmx-box" style="margin-right: 70px;">
+                    <a href="/ygkj/ssq/ydjzjmx/" target="_blank">
+                        <div class="ssq-ydj-zjmx">åè²çä¸ç­å¥ä¸­å¥æç»</div>
+                    </a>
+                    <a href="/ygkj/kl8/kl8xszszjmx/" target="_blank">
+                        <div class="ssq-ydj-zjmx">å¿«ä¹8âéåä¸­åâä¸­å¥æç»</div>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="body-content-item body-content-sec sec-main">
+            <div class="content-change">
+                <div class="show">
+                    <div class="notice-item ssq">
+                        <div class="fl winning-code">
+                            <div class="fl logo_container">
+                                <img src="/images/fcpz/block-ssq-m.png" alt="" />
+                            </div>
+                            <div class="notice-content">
+                                <div class="notice-content-title">
+                                    åè²ç
+                                    <span class="stage">ç¬¬æ</span>
+                                    å¥æ± ç´¯è®¡éé¢ï¼
+                                    <span class="red">ï¿¥å</span>
+                                </div>
+                                <div class="notice-content-title-one">
+                                    ä¸æä¸ç­å¥ç¹å«å¥æ´¾å¥éé¢ï¼ï¿¥ <span class="tentenjj-val"></span>å
+                                </div>
+                                <div class="notice-content-title-six">
+                                    ä¸æå­ç­å¥ç¿»çªå¥å¥éä½é¢ï¼ï¿¥ <span class="tentenzs-val"></span>å
+                                </div>
+                                <div class="qiu"></div>
+                            </div>
+                        </div>
+                        <div class="kjrqAndTb-wrap">
+                            <div class="fr winning-time kjrqAndTb">
+                                <div class="time">æ¯å¨äº ã å ã æ¥å¼å¥</div>
+                                <div class="btn1">
+                                    <span class="btn1-txt">
+                                        <a class="ssqXqLink" href="" target="_blank">
+                                            <img src="/images/detail.png" alt="" />
+                                            <br />
+                                            è¯¦æ
+                                        </a>
+                                    </span>
+                                    <span class="btn1-txt">
+                                        
+                                            <a href="/ygkj/wqkjgg/ssq/" target="_blank">
+                                                <img src="/images/past.png" alt="" />
+                                                <br />
+                                                å¾æ
+                                            </a>
+                                        
+                                    </span>
+                                    <span class="btn1-txt">
+                                        <a class="ssqSpLink" href="" target="_blank">
+                                            <img src="/images/video.png" alt="" />
+                                            <br />
+                                            è§é¢
+                                        </a>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="notice-item kl8">
+                        <div class="fl logo_container">
+                            <img src="/images/fcpz/block-kl8-m.png" alt="" />
+                        </div>
+                        <div class="kl8-con" style="width: 70%;">
+                            <div class="kl8-tit">
+                                <div class="fl">
+                                    <div class="notice-content-title" id="kl8TitleNew" style="display: none;">
+                                        å¿«ä¹8
+                                        <span class="stage"></span>
+                                        æµ®å¨å¥å¥æ± ç´¯è®¡éé¢ï¼
+                                        <span id="kl8Jc" class="red"></span>
+                                        &nbsp;&nbsp;åºå®å¥å¥æ± ç´¯è®¡éé¢ï¼
+                                        <span id="kl8GdJc" class="red"></span>
+                                    </div>
+                                    <div class="notice-content-title" id="kl8TitleOld" style="display: none;">
+                                        å¿«ä¹8
+                                        <span class="stage"></span>
+                                        âéåâç©æ³å¥æ± ç´¯è®¡éé¢ï¼
+                                        <span id="kl8JcOld" class="red"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="klRed-dom"></div>
+                            <div style="margin: 10px 0;">
+                                <div class="dnone kl8PjContainer kl8PjnAmountContainer">
+                                    ä¸æç¹å®ç©æ³å¥ä¸å¥æ´¾å¥ä½é¢ï¼
+                                    <span class="red kl8PjnAmount"></span>
+                                </div>
+                                <div class="dnone kl8PjContainer kl8PjnTenContainer">
+                                    ä¸æâéåä¸­åâç¹å«å¥æ´¾å¥éé¢ï¼
+                                    <span class="red kl8PjnTen"></span>
+                                </div>
+                                <div class="dnone kl8PjContainer kl8PjnNineContainer">
+                                    ä¸æâéä¹ä¸­ä¹âç¹å«å¥æ´¾å¥éé¢ï¼
+                                    <span class="red kl8PjnNine"></span>
+                                </div>
+                            </div>
+                            <div class="code" style="width: 560px;">
+                                <div class="qiu fl"></div>
+                            </div>
+                        </div>
+                        <div style="position: absolute; right: 30px; top: 50%; transform: translate(0,-50%);">
+                            <div class="time" style="text-align: right;margin-bottom: 15px;">æ¯æ¥å¼å¥</div>
+                            <div class="btn1 fr">
+                                <span class="btn1-txt">
+                                    <a class="kl8XqLink" href="" target="_blank">
+                                        <img src="/images/detail.png" alt="" />
+                                        <br />
+                                        è¯¦æ
+                                    </a>
+                                </span>
+                                <span class="btn1-txt">
+                                    
+                                        <a href="/ygkj/wqkjgg/kl8/" target="_blank">
+                                            <img src="/images/past.png" alt="" />
+                                            <br />
+                                            å¾æ
+                                        </a>
+                                    
+                                </span>
+                                <span class="btn1-txt">
+                                    <a class="kl8SpLink" href="" target="_blank">
+                                        <img src="/images/video.png" alt="" />
+                                        <br />
+                                        è§é¢
+                                    </a>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="notice-item fc3d">
+                        <div class="fl winning-code">
+                            <div class="fl logo_container">
+                                <img src="/images/fcpz/block-3d-m.png" alt="" />
+                            </div>
+                            <div class="notice-content">
+                                <div class="notice-content-title">
+                                    ç¦å½©3D
+                                    <span class="stage">ç¬¬æ</span>
+                                </div>
+                                <div class="qiu"></div>
+                            </div>
+                        </div>
+                        <div class="fr winning-time">
+                            <div class="time">æ¯æ¥å¼å¥</div>
+                            <div class="btn1">
+                                <span class="btn1-txt">
+                                    <a class="fcXqLink" href="" target="_blank">
+                                        <img src="/images/detail.png" alt="" />
+                                        <br />
+                                        è¯¦æ
+                                    </a>
+                                </span>
+                                <span class="btn1-txt">
+                                    
+                                        <a href="/ygkj/wqkjgg/fc3d/" target="_blank">
+                                            <img src="/images/past.png" alt="" />
+                                            <br />
+                                            å¾æ
+                                        </a>
+                                    
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="notice-item qcl">
+                        <div class="fl winning-code">
+                            <div class="fl logo_container">
+                                <img src="/images/fcpz/block-qlc-m.png" alt="" />
+                            </div>
+                            <div class="notice-content">
+                                <div class="notice-content-title">
+                                    ä¸ä¹å½©
+                                    <span class="stage">ç¬¬æ</span>
+                                    å¥æ± ç´¯è®¡éé¢ï¼
+                                    <span class="red">ï¿¥å</span>
+                                </div>
+                                <div class="qiu"></div>
+                            </div>
+                        </div>
+                        <div class="fr winning-time">
+                            <div class="time">æ¯å¨ä¸ ã ä¸ ã äºå¼å¥</div>
+                            <div class="btn1">
+                                <span class="btn1-txt">
+                                    <a class="qlcXqLink" href="" target="_blank">
+                                        <img src="/images/detail.png" alt="" />
+                                        <br />
+                                        è¯¦æ
+                                    </a>
+                                </span>
+                                <span class="btn1-txt">
+                                    
+                                        <a href="/ygkj/wqkjgg/qlc/" target="_blank">
+                                            <img src="/images/past.png" alt="" />
+                                            <br />
+                                            å¾æ
+                                        </a>
+                                    
+                                </span>
+                                <span class="btn1-txt">
+                                    <a class="qlcSpLink" href="" target="_blank">
+                                        <img src="/images/video.png" alt="" />
+                                        <br />
+                                        è§é¢
+                                    </a>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- åè²çä¸ç­å¥ä¸­å¥æç»å¥å£ --><!-- å¿«ä¹8éåä¸­åæç»å¥å£ -->
+        <!-- <div class="first-prize">
+            <cms:catalog alias="ssq_ydjzjmx">
+                <a href="${catalog.link}" target="_blank">
+                    <img style="width:98%;margin-right: 2%;" src="${prefix('images/ssqydj.jpg')}" alt="" />
+                </a>
+            </cms:catalog>
+            <cms:catalog alias="ygkj_kl8_kl8xszszjmx">
+                <a href="${catalog.link}" target="_blank">
+                    <img style="width:98%;margin-left: 2%;" src="${prefix('images/kl8zjmx.jpg')}" alt="" />
+                </a>
+            </cms:catalog>
+        </div> -->
+    </div>
+</div>
+<script>
+    var tentenjjValue = $('.tentenjj-dom').text();
+    var tentenzsValue = $('.tentenzs-dom').text();
+    if (tentenjjValue) {
+        $('.notice-content-title-one').html("ä¸æä¸ç­å¥ç¹å«å¥æ´¾å¥éé¢ï¼ï¿¥ <span class='tentenjj-val'>" + tentenjjValue + "</span>å");
+    } else {
+        $('.notice-content-title-one').html('');
+    }
+    if (tentenzsValue) {
+        $('.notice-content-title-six').html("ä¸æå­ç­å¥ç¿»çªå¥å¥éä½é¢ï¼ï¿¥ <span class='tentenjj-val'>" + tentenzsValue + "</span>å");
+    } else {
+        $('.notice-content-title-six').html('');
+    }
+    $('.ssq .stage').text('ç¬¬' + $('.ssqQh-dom').text() + 'æ')
+    $('.kl8 .stage').text('ç¬¬' + $('.kl8Qh-dom').text() + 'æ')
+    $('.qcl .stage').text('ç¬¬' + $('.qlcQh-dom').text() + 'æ')
+    $('.fc3d .stage').text('ç¬¬' + $('.fcQh-dom').text() + 'æ')
+    $('.ssq .red').text('ï¿¥' + $('.ssqPool-dom').text() + 'å')
+    $('.qcl .red').text('ï¿¥' + $('.qlcPool-dom').text() + 'å')
+    var kl8PjnAmount = $('.kl8PjnAmount-dom').text()
+    var kl8PjnTen = $('.kl8PjnTen-dom').text()
+    var kl8PjnNine = $('.kl8PjnNine-dom').text()
+    let kl8gzq = $('.kl8gzq-dom').text()
+    let kl8Qh = $('.kl8Qh-dom').text()
+    if (kl8gzq < kl8Qh) {
+        $('#kl8TitleNew').show()
+        $('#kl8TitleOld').hide()
+        $('#kl8Jc').text('ï¿¥' + $('.kl8Jc-dom').text() + 'å')
+        $('#kl8GdJc').text('ï¿¥' + $('.kl8GdJc-dom').text() + 'å')
+    } else {
+        $('#kl8TitleNew').hide()
+        $('#kl8TitleOld').show()
+        $('#kl8JcOld').text('ï¿¥' + $('.kl8Jc-dom').text() + 'å')
+    }
+    if (kl8PjnAmount) {
+        $('.kl8PjnAmountContainer').show()
+        $('.kl8 .kl8PjnAmount').text(
+            'ï¿¥' + kl8PjnAmount + 'å'
+        )
+    }
+    if (kl8PjnTen) {
+        $('.kl8PjnTenContainer').show()
+        $('.kl8 .kl8PjnTen').text(
+            'ï¿¥' + kl8PjnTen + 'å'
+        )
+    }
+    if (kl8PjnNine) {
+        $('.kl8PjnNineContainer').show()
+        $('.kl8 .kl8PjnNine').text(
+            'ï¿¥' + kl8PjnNine + 'å'
+        )
+    }
+    $('.ssq .ssqXqLink').attr('href', $('.ssqXqLink-dom').text())
+    $('.ssq .ssqSpLink').attr('href', $('.ssqSpLink-dom').text())
+    $('.kl8 .kl8XqLink').attr('href', $('.kl8XqLink-dom').text())
+    $('.kl8 .kl8SpLink').attr('href', $('.kl8SpLink-dom').text())
+    $('.fc3d .fcXqLink').attr('href', $('.fcXqLink-dom').text())
+    $('.qcl .qlcXqLink').attr('href', $('.qlcXqLink-dom').text())
+    $('.qcl .qlcSpLink').attr('href', $('.qlcSpLink-dom').text())
+    var ssqRed = sortQiu(eval('(' + $('.ssqRed-dom').html() + ')'))
+    var ssqBlue = sortQiu(eval('(' + $('.ssqBlue-dom').html() + ')'))
+    var klRed = sortQiu(eval('(' + $('.klRed-dom').html() + ')'))
+    var fcBlue = eval('(' + $('.fcBlue-dom').html() + ')')
+    var qclRed = sortQiu(eval('(' + $('.qclRed-dom').html() + ')'))
+    var qclBlue = sortQiu(eval('(' + $('.qclBlue-dom').html() + ')'))
+
+
+    SplicingDrawPrize('ssq', ssqRed, ssqBlue, "/img/ball/redCircle.png",
+        "/img/ball/blueCircle.png")
+    SplicingDrawPrize('kl8', klRed, [], "/img/kl8/kl8.png", '')
+    SplicingDrawPrize('fc3d', [], fcBlue, '', "/img/fc3d/fc3d.png")
+    SplicingDrawPrize('qcl', qclRed, qclBlue, "/img/qlc/orange.png", "/img/qlc/orange_dark.png")
+
+    // æ¼æ¥å¼å¥æ°æ®
+    function SplicingDrawPrize(className, redData, blueData, redBg, blueBg) {
+        if (redData.length != 0) {
+            for (var i = 0; i < redData.length; i++) {
+                var qiuHtml =
+                    "<div class='lotteryNumContainer'> <img src='" + redBg + "' alt='' /> <div class='lotteryNum'>" +
+                    redData[i] + "</div></div>"
+                $('.' + className + ' .qiu').append(qiuHtml)
+            }
+        }
+        if (blueData.length != 0) {
+            for (var i = 0; i < blueData.length; i++) {
+                var qiuHtml = "<div class='lotteryNumContainer'> <img src='" + blueBg +
+                    "' alt='' /> <div class='lotteryNum'>" +
+                    blueData[i] + "</div></div>"
+                $('.' + className + ' .qiu').append(qiuHtml)
+            }
+        }
+    }
+    // åæ¢ç¥¨ç§
+    $('.ygkj-kjgg .select-ticket').change(function () {
+        var ticketType = $(this).val()
+        $('.ygkj-kjgg .select-issue').html('')
+        $('.ygkj-kjgg .select-issue').append(
+            '<option selected hidden disabled value="">éæ©æå·</option>'
+        )
+        var sendData = q30(ticketType)
+        if (sendData.message == 'æ¥è¯¢æå') {
+            var issue = sendData.result.code
+            for (var i = 0; i < issue.length; i++) {
+                $('.ygkj-kjgg .select-issue').append(
+                    '<option value="' + issue[i] + '">' + issue[i] + '</option>'
+                )
+            }
+        }
+    })
+</script>
+          </div>
+        
+        
+        
+        
+        
+        
+        
+      </div>
+    </div>
+  </div>
+  <div style="height: 70px;display: inline-block;"></div>
+  <!-- åºé¨ -->
+  
+<style>
+    .zgs_title {
+        opacity: 1;
+        font-size: 14px;
+        font-family: MicrosoftYaHei, MicrosoftYaHei-Regular;
+        font-weight: 400;
+        text-align: left;
+        color: #616161;
+        line-height: 19px;
+        float: left;
+        margin: 0 10px;
+    }
+
+    .zgs_foot a :hover {
+        color: #D61518;
+    }
+
+    .zgs_head {
+        height: 41px;
+        opacity: 1;
+        font-size: 14px;
+        font-family: MicrosoftYaHei, MicrosoftYaHei-Bold;
+        font-weight: 700;
+        text-align: left;
+        color: #212121;
+        line-height: 40px;
+    }
+
+    .zgs_container {
+        width: 25%;
+        float: left;
+    }
+
+    .zgs_foot {
+        width: 1200px;
+        margin: 32px auto 20px auto;
+        overflow: hidden;
+    }
+
+    .zgs_foot a {
+        outline: none;
+        text-decoration: none !important;
+    }
+
+    .zgs_line {
+        width: 1200px;
+        height: 1px;
+        opacity: 1;
+        background: #dadadf;
+        margin: 0 auto;
+        margin-top: 19px !important;
+        margin-bottom: 21px !important;
+    }
+
+    .v_line {
+        font-size: 14px;
+        font-family: MicrosoftYaHei, MicrosoftYaHei-Regular;
+        font-weight: 400;
+        text-align: left;
+        color: #616161;
+        line-height: 19px;
+        float: left;
+    }
+
+    .footer .footer-top .footer-top-wrap .footer-img {
+        right: 0;
+        top: 5px;
+    }
+
+    .footer .footer-bot .footer-logo {
+        width: 35%;
+    }
+
+    .foot-r {
+        width: 250px;
+    }
+
+    .footer .footer-bot .footer-bot-wrap {
+        margin: 0 auto !important;
+        margin-top: 3px !important;
+    }
+    .footer .footer-bot .bottom-txt{
+        margin-top: 26px !important; 
+        margin-bottom: 10px;
+    }
+</style>
+<div class="footer">
+    <div class="zgs_line"></div>
+    <div class="footer-bot">
+        <div class="footer-bot-wrap">
+             <div class="footer-logo fl" style="margin: 0;margin-top: -3px;">
+                <img src="/images/wla.png" alt="" title="ä¸­å½ç¦å©å½©ç¥¨è·å¾ä¸çå½©ç¥¨åä¼ âè´£ä»»å½©ç¥¨âä¸çº§è®¤è¯" style="width: 104px;" />
+                <img src="/images/blue.png" alt="" style="width: 51px;height: 61px;" />
+                <img src="/images/brand_realname_large_img.png" style="width: 127px;height: 47px;" alt="" />
+                <a href="/wzjc"><img src="/images/wwwzzc.png" alt="" style="width: 99px;height: 50px;" /></a>
+            </div>
+            <div class="copyright fl">
+                <div>çæææï¼ä¸­å½ç¦å©å½©ç¥¨åè¡ç®¡çä¸­å¿ ç½ç«ä¸»åï¼ä¸­å½ç¦å©å½©ç¥¨åè¡ç®¡çä¸­å¿</div>
+                <div>ICPå¤æ¡ç¼å·ï¼äº¬ICPå¤13026484 <img src="/images/babh.png" alt=""><a
+                        href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=11010502042638"
+                        target="_blank">äº¬å¬ç½å®å¤</a> 11010502042638å·
+                </div>
+                <div><span style="font-weight:bold;">æå¡ç­çº¿ï¼954168</span></div>
+            </div>
+            <div class="foot-r fr">
+                <!-- <img src="${prefix('images/wla.png')}" alt="" title="ä¸­å½ç¦å©å½©ç¥¨è·å¾ä¸çå½©ç¥¨åä¼ âè´£ä»»å½©ç¥¨âä¸çº§è®¤è¯"
+                     style="width: 104px;height: 55px;"/> -->
+                <a href="/ewm/" target="_blank">
+                    <img src="/images/medium.png" style="width: 250px;" alt="">
+                </a>
+            </div> 
+            <div class="clearfix"></div>
+            <div class="bottom-txt">æ¸©é¦¨æç¤ºï¼çæ§è´­å½©&nbsp;&nbsp;&nbsp;&nbsp;éåèè¡&nbsp;&nbsp;&nbsp;&nbsp;ç¦æ­¢æªæå¹´äººè´­ä¹°å½©ç¥¨ååå¥</div>
+        </div>
+    </div>
+</div>
+  <script>
+    var currentAlias = 'ygkj_kjgg'
+    window.onload = function () {
+      // å¤æ­ææ wqkjspæ¹æ³
+      let wqkjsp = window.wqkjsp
+      if (wqkjsp) {
+        wqkjsp()
+      }
+      // å¤æ­ææ wqkjggæ¹æ³
+      let wqkjgg = window.wqkjgg
+      if (wqkjgg) {
+        wqkjgg()
+      }
+    }
+  </script>
+  <script src="/js/catalog.js"></script>
+
+<script src="https://www.cwl.gov.cn/cwl_admin/stat/front/stat.js" type="text/javascript"></script>
+<script>
+if(window._zcms_stat)_zcms_stat("SiteID=21&CatalogInnerCode=000291000018&Type=null&Dest=https://www.cwl.gov.cn/cwl_admin/front/stat/dealer");
+</script>
+
+<!-- App=ZCMS(ZCMSåå®¹ç®¡çç³»ç») 3.2.7,CostTime=9,PublishDate=2025-07-23 16:35:47 -->
+</body>
+
+</html>
